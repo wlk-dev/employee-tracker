@@ -16,10 +16,11 @@ class DB {
 
     getEmployees() {
         return this.conn.promise().query(`
-        SELECT e.id AS id, e.first_name AS first_name, e.last_name as last_name, r.title AS title, d.name AS department, r.salary AS salary, e.manager_id AS manager
+        SELECT e.first_name AS first_name, e.last_name as last_name, r.title AS title, d.name AS department, r.salary AS salary, CONCAT(manager.first_name, " ", manager.last_name) AS manager
         FROM department d
             LEFT JOIN role r ON d.id = r.department_id
             LEFT JOIN employee e ON r.id = e.role_id
+            LEFT JOIN employee manager ON manager.id = e.manager_id
         `)
     }
 
@@ -61,20 +62,6 @@ let db = new DB(connection);
 // db.getRoles().then( ([rows]) => console.table(rows) ).catch( err => console.log(err) )
 // db.getEmployees().then( ([rows]) => console.table(rows) ).catch( err => console.log(err) )
 
-// db.getEmployees().then( ([rows]) => rows ).catch( err => console.log(err) )
-db.getEmployees().then( ([rows]) => {
-    for(const emp of rows) {
-        if (emp.manager) {
-            let m_name;
-            for(const temp of rows) {
-                if (emp.manager === temp.id) {
-                    m_name = `${temp.first_name} ${temp.last_name}`
-                }
-            }
-            emp.manager = m_name
-        }
-    }
-    console.table(rows)
-})
+// db.getEmployees().then( ([rows]) => console.table(rows) ).catch( err => console.log(err) )
 
-connection.end()
+// connection.end()
