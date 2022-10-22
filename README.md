@@ -11,6 +11,9 @@
 * [Questions](#questions)
 ## Description
 A CLI tool for managing employee information.
+
+
+[Showcase Video.](https://youtu.be/a4MIz7eXUGA)
 ## Installation
 `Clone the Repo`
 ## Usage
