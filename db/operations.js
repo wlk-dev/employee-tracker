@@ -1,9 +1,12 @@
 const connection = require('./connection')
-const cTable = require("console.table")
 
 class DB {
     constructor(connection) {
         this.conn = connection
+    }
+
+    close () {
+        this.conn.end();
     }
 
     getDepartments() {
@@ -51,7 +54,7 @@ class DB {
 
 module.exports = new DB(connection);
 
-let db = new DB(connection);
+// let db = new DB(connection);
 
 // db.insertDepartment("Yo Momma").then( ([rows]) => console.table(rows) ).catch( err => console.log(err) )
 // db.insertRole("Ass Eater", 100_000, 5).then( ([rows]) => console.table(rows) ).catch( err => console.log(err) )
