@@ -1,3 +1,4 @@
+// Instructor Provided starting code.
 const inq = require("inquirer");
 const logo = require("asciiart-logo");
 
@@ -64,7 +65,6 @@ function loadMainPrompts() {
     },
   ]).then(res => {
     let choice = res.choice;
-    // Call the appropriate function depending on what the user chose
     
     switch (choice) {
         case "VIEW_EMPLOYEES":
@@ -98,8 +98,6 @@ function loadMainPrompts() {
         case "EXIT":
             db.close()
             return;  
-      
-        // add the other case statements here
     }
   }
 )}
@@ -271,17 +269,4 @@ async function updateEmployee() {
 }
 /* ======= END Controllers ============================================================ */
 
-
-
-
-
-/* 
-  You will write lots of other functions here for the other prompt options.
-  Note that some prompts will require you to provide more prompts, and these 
-  may need functions of their own.
-*/
-
-
-
-// Everything starts here!
 init();
